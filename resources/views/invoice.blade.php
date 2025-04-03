@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Form</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invoice Generator - Create Professional Invoices in Minutes</title>
+        <meta name="description" content="Create, customize, and send professional invoices with our easy-to-use invoice generator. Include your logo, manage clients, and get paid faster.">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    </head>
 
-<body class="bg-gray-100 p-6">
+<body class="bg-gray-100 ">
     <form action="{{ route('invoice.generate-pdf') }}" method="POST" enctype="multipart/form-data"
         class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
         @csrf
@@ -324,6 +326,7 @@
             });
         });
     </script>
+@include('seo')
 </body>
 
 </html>

@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use UConverter;
 
 class InvoiceController extends Controller
 {
@@ -92,13 +93,14 @@ class InvoiceController extends Controller
 
         // Generate PDF
         $pdf = Pdf::loadView('invoice_pdf', $pdfData);
+        $pdfContent = $pdf->output();
 
-        return $this->emailInvoice();
+        $this->emailInvoice(UConverter::transcode($pdfContent, 'UTF-8', 'auto'), 'manavpanchal42@gmail.com');
         // Return the PDF for download
         return $pdf->download('invoice-' . $invoice->invoice_number . '.pdf');
     }
 
-    private function emailInvoice(string $pdfContent)
+    private function emailInvoice(string $pdfContent, string $email)
     {
         Mail::to($email)->send(new InvoiceMail( $pdfContent));
     }
